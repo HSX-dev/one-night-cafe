@@ -135,7 +135,7 @@ export class Game {
       } else {
         this.setMode('normal');
         this.ctrlSkip = false;
-        toast('已停在未读文本');
+        toast('已停在未读文本（设置里可开启"跳过未读"）');
       }
     } else if (this.mode === 'auto') {
       const delay = (900 + Array.from(step.text).length * 70) * this.settings.autoDelay;
