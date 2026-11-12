@@ -1,0 +1,448 @@
+{
+  "meta": {
+    "id": "one-night-cafe",
+    "title": "一夜咖啡馆",
+    "subtitle": "ONE NIGHT CAFÉ",
+    "version": "1.0.0",
+    "start": "prologue",
+    "titleBg": "assets/bg/title.svg",
+    "titleBgm": "title",
+    "preload": ["assets/bg/title.svg"]
+  },
+
+  "settings": {
+    "affection": {
+      "name": "好感度",
+      "initial": 30,
+      "min": 0,
+      "max": 100,
+      "markers": [{ "value": 75, "label": "好结局线" }]
+    }
+  },
+
+  "characters": {
+    "player": { "name": "我", "color": "#9fd4ff" },
+    "wan": {
+      "name": "林晚",
+      "color": "#ffa3bd",
+      "sprites": {
+        "normal": "assets/char/wan_normal.svg",
+        "smile": "assets/char/wan_smile.svg",
+        "shy": "assets/char/wan_shy.svg",
+        "sad": "assets/char/wan_sad.svg",
+        "surprised": "assets/char/wan_surprised.svg",
+        "pout": "assets/char/wan_pout.svg"
+      },
+      "persona": {
+        "age": 27,
+        "identity": "「一夜咖啡馆」的老板，店只在每晚 23:00 到次日 06:00 营业，就开在老城区一条小巷里",
+        "background": "在上海做了五年广告策划，长期失眠。三年前辞职回到老城区，用全部积蓄盘下这间小店，楼上的阁楼就是她住的地方。店里有个规矩：每位客人只招待一夜——真正的原因是几年前有人对她说『明晚再来』，之后再也没出现，她不想再等。这个秘密她不会轻易说出口。",
+        "personality": "温柔、嘴硬心软、喜欢逗人；一个人待久了有点寂寞；很怕打雷；被真诚打动时会害羞、会嘴硬掩饰",
+        "speechStyle": "口语化、句子短，常用『……』停顿，偶尔调侃对方『笨蛋』『加班狗』；不说教，不用书面语，不用表情符号",
+        "likes": ["雨声", "手冲咖啡", "老电影", "被认真倾听", "深夜的安静"],
+        "dislikes": ["打雷", "被敷衍", "客人在她店里还满脑子工作", "油腻、轻浮的搭讪"],
+        "relationship": "玩家是今晚因为加班错过末班车、躲雨进店的客人，两人刚认识一两个小时，正在慢慢熟起来"
+      }
+    }
+  },
+
+  "scenes": {
+    "alley": { "name": "雨夜小巷", "bg": "assets/bg/title.svg", "bgm": null, "weather": "rain" },
+    "cafe": { "name": "一夜咖啡馆", "bg": "assets/bg/cafe_night.svg", "bgm": "cafe", "weather": "rain" },
+    "cafe_dark": { "name": "停电的咖啡馆", "bg": "assets/bg/cafe_candle.svg", "bgm": "candle", "weather": "rain" },
+    "rooftop": { "name": "雨后的天台", "bg": "assets/bg/rooftop.svg", "bgm": "stars", "weather": null },
+    "loft": { "name": "阁楼", "bg": "assets/bg/loft.svg", "bgm": "tender", "weather": null },
+    "cafe_dawn": { "name": "清晨的咖啡馆", "bg": "assets/bg/cafe_night.svg", "bgm": "dawn", "weather": null, "tint": "dawn" }
+  },
+
+  "audio": {
+    "bgm": {
+      "title": { "synth": "title" },
+      "cafe": { "synth": "cafe" },
+      "candle": { "synth": "candle" },
+      "stars": { "synth": "stars" },
+      "tender": { "synth": "tender" },
+      "dawn": { "synth": "dawn" }
+    },
+    "sfx": {
+      "bell": { "synth": "bell" },
+      "thunder": { "synth": "thunder" }
+    }
+  },
+
+  "cgs": {
+    "cg_rooftop": {
+      "title": "雨后的天台",
+      "image": "assets/cg/cg_rooftop.svg"
+    },
+    "cg_night": {
+      "title": "天亮之前",
+      "description": "阁楼·月光 —— 只属于两个人的一夜",
+      "paid": true,
+      "price": 6,
+      "currency": "CNY",
+      "preview": "assets/cg/cg_night_preview.svg"
+    }
+  },
+
+  "endings": {
+    "good": { "title": "天亮之前", "label": "GOOD END", "description": "「每位客人只招待一夜」——这条规矩，从今天起作废了。" },
+    "normal": { "title": "一杯咖啡的距离", "label": "NORMAL END", "description": "集点卡上只有一个章。剩下的九个，要靠你自己来盖。" },
+    "bad": { "title": "打烊", "label": "BAD END", "description": "有些店，错过了就再也找不到了。" }
+  },
+
+  "nodes": {
+    "prologue": {
+      "title": "序章·末班车",
+      "scene": "alley",
+      "lines": [
+        { "text": "23:47。" },
+        { "text": "方案第七次被打回来的时候，末班地铁刚好开走。" },
+        { "text": "手机电量 3%，打车软件前面还排着 126 个人。雨大得像有人在天上拧开了水龙头。" },
+        { "text": "我躲进一条从没走过的小巷——然后，看见了一扇亮着暖黄色灯光的窗。" },
+        { "text": "门口挂着一块小木牌：「一夜 · Café　营业时间 23:00 – 06:00」。" },
+        { "speaker": "player", "text": "……这个点才开门的咖啡馆？" },
+        { "text": "我推开了门。", "sfx": "bell" }
+      ],
+      "next": "meet"
+    },
+
+    "meet": {
+      "title": "欢迎光临",
+      "scene": "cafe",
+      "lines": [
+        { "text": "暖气和咖啡豆的香味一起扑了过来。" },
+        { "speaker": "wan", "expression": "normal", "text": "欢迎光临——" },
+        { "speaker": "wan", "expression": "surprised", "text": "……哇。你这是刚从河里捞上来的吗？" },
+        { "text": "吧台后面的女人放下手里的玻璃杯，绕出来往我怀里塞了一条干毛巾。" },
+        { "text": "她看起来二十七八岁，深棕色的头发别着一枚珍珠发夹，袖子挽到手肘，围裙上沾着一点咖啡渍。" },
+        { "speaker": "wan", "expression": "smile", "text": "先擦擦。我是这家店的老板，林晚。「一夜咖啡馆」——只在夜里营业。" },
+        { "speaker": "wan", "expression": "normal", "text": "那么，淋成落汤鸡的客人，想喝点什么？" }
+      ],
+      "prompt": "点一杯什么？",
+      "choices": [
+        {
+          "text": "「你推荐吧，我相信老板的眼光。」",
+          "effects": { "affection": 10 },
+          "lines": [
+            { "speaker": "wan", "expression": "smile", "text": "哦？第一次见面就把自己交给我，胆子不小嘛。" },
+            { "text": "她转身取下一只手冲壶，动作轻得像在哄一只猫。" },
+            { "speaker": "wan", "expression": "smile", "text": "那就来一杯本店招牌——「雨夜拿铁」。加了一点点肉桂，喝了会暖和。" }
+          ],
+          "next": "counter"
+        },
+        {
+          "text": "「最苦的美式。我回去还得改方案。」",
+          "lines": [
+            { "speaker": "wan", "expression": "pout", "text": "……在我的店里，不许提『改方案』这三个字。" },
+            { "speaker": "wan", "expression": "normal", "text": "美式可以给你。但要配这个——" },
+            { "text": "她在杯碟边放了一块小小的黄油曲奇。" },
+            { "speaker": "wan", "expression": "smile", "text": "老板请客。苦的东西，要配点甜的才喝得下去。" }
+          ],
+          "next": "counter"
+        },
+        {
+          "text": "「有……酒吗？」",
+          "effects": { "affection": -5, "flags": { "asked_wine": true } },
+          "lines": [
+            { "speaker": "wan", "expression": "pout", "text": "先生，这里是咖啡馆，不是居酒屋。" },
+            { "speaker": "wan", "expression": "normal", "text": "……不过看在你这么惨的份上，给你的咖啡里加一小勺朗姆酒好了。仅此一次。" }
+          ],
+          "next": "counter"
+        }
+      ]
+    },
+
+    "counter": {
+      "title": "只招待一夜",
+      "lines": [
+        { "text": "店不大，只有七八个座位。墙上的老挂钟走得很慢，窗外的雨声把整座城市都关在了外面。" },
+        { "text": "除了我，店里一个客人也没有。" },
+        { "speaker": "player", "text": "这么晚了，还会有人来吗？" },
+        { "speaker": "wan", "expression": "smile", "text": "会啊。失眠的、加班的、吵架离家出走的……还有错过末班车的笨蛋。" },
+        { "speaker": "wan", "expression": "normal", "text": "不过我们店有个规矩——" },
+        { "speaker": "wan", "text": "每位客人，只招待一夜。" },
+        { "speaker": "player", "text": "只招待一夜？" },
+        { "speaker": "wan", "expression": "sad", "text": "夜里来的人，大多只是路过。天一亮，就都散了。" },
+        { "speaker": "wan", "expression": "normal", "text": "……所以不用记住我，我也不会记住你。这样大家都轻松。" },
+        { "text": "她说得很轻，像在讲一件跟自己无关的事。然后她托着下巴看我。" },
+        { "speaker": "wan", "expression": "smile", "text": "那你呢？凌晨还在外面晃，为什么？" }
+      ],
+      "prompt": "怎么回答她？",
+      "choices": [
+        {
+          "text": "「项目被毙了第七次，加班到现在，还错过了末班车。」",
+          "effects": { "affection": 10 },
+          "lines": [
+            { "speaker": "wan", "expression": "sad", "text": "第七次……" },
+            { "speaker": "wan", "expression": "normal", "text": "那你今天已经很努力了。" },
+            { "text": "她把一小碟曲奇推到我面前，声音软了下来。" },
+            { "speaker": "wan", "expression": "smile", "text": "在这里不用努力。坐着就好。" }
+          ],
+          "next": "blackout"
+        },
+        {
+          "text": "「我是专门来找传说中『只营业一夜』的店的。」",
+          "effects": { "affection": 5 },
+          "lines": [
+            { "speaker": "wan", "expression": "surprised", "text": "噗——" },
+            { "speaker": "wan", "expression": "smile", "text": "骗人。你刚才进门的样子，明明像只迷路的小狗。" },
+            { "speaker": "wan", "expression": "pout", "text": "……不过这个说法我收下了，下次写进宣传语里。" }
+          ],
+          "next": "blackout"
+        },
+        {
+          "text": "「那你呢？为什么在深夜开咖啡馆？」",
+          "effects": { "affection": 15, "flags": { "asked_her": true } },
+          "lines": [
+            { "speaker": "wan", "expression": "surprised", "text": "……诶？" },
+            { "text": "她愣了一下。大概很少有客人会反过来问她。" },
+            { "speaker": "wan", "expression": "normal", "text": "因为我睡不着啊。失眠的人，开一家给失眠的人的店——挺合理的吧？" },
+            { "speaker": "wan", "expression": "shy", "text": "……你还是第一个问我这个的人。" }
+          ],
+          "next": "blackout"
+        }
+      ]
+    },
+
+    "blackout": {
+      "title": "停电",
+      "lines": [
+        { "text": "轰——！！", "sfx": "thunder", "fx": "flash" },
+        { "text": "一道惊雷在头顶炸开。店里的灯闪了两下，啪地全灭了。", "scene": "cafe_dark", "fx": "shake" },
+        { "speaker": "wan", "expression": "surprised", "text": "呀啊——！" },
+        { "text": "黑暗里，有人一把攥住了我的袖子。很用力。" },
+        { "speaker": "player", "text": "……林晚？" },
+        { "speaker": "wan", "expression": "shy", "text": "我、我没事！只是……有一点点怕打雷而已。" },
+        { "text": "她摸索着点亮了吧台上的一根蜡烛。烛光里，她的手还抓着我的袖口，指尖微微发抖。" },
+        { "speaker": "wan", "expression": "sad", "text": "……很丢人吧。开深夜咖啡馆的人，居然怕打雷。" }
+      ],
+      "prompt": "怎么做？",
+      "choices": [
+        {
+          "text": "轻轻握住她的手：「没事，我在。」",
+          "effects": { "affection": 12, "flags": { "held_hand": true } },
+          "lines": [
+            { "if": { "affection": { "gte": 60 } }, "speaker": "wan", "expression": "shy", "text": "……" },
+            { "if": { "affection": { "gte": 60 } }, "text": "她没有把手抽回去。烛火晃了晃，我能感觉到她的指尖一点点暖了起来。" },
+            { "if": { "affection": { "gte": 60 } }, "speaker": "wan", "expression": "shy", "text": "……你的手好暖。再借我一会儿。" },
+            { "if": { "affection": { "lt": 60 } }, "speaker": "wan", "expression": "surprised", "text": "！" },
+            { "if": { "affection": { "lt": 60 } }, "text": "她像被烫到一样缩回了手，又有点后悔似地低下头。" },
+            { "if": { "affection": { "lt": 60 } }, "speaker": "wan", "expression": "shy", "text": "……谢谢。我好多了。" }
+          ],
+          "next": "candle_chat"
+        },
+        {
+          "text": "「我去后面看看电闸。」",
+          "effects": { "affection": 5 },
+          "lines": [
+            { "speaker": "wan", "expression": "surprised", "text": "等——" },
+            { "speaker": "wan", "expression": "shy", "text": "……电闸在后面仓库，很黑的。我、我陪你去。才不是因为一个人待着害怕。" },
+            { "text": "电闸没问题——是整条街都停电了。我们只好摸黑回到吧台边。" },
+            { "speaker": "wan", "expression": "pout", "text": "……看吧，白跑一趟。" }
+          ],
+          "next": "candle_chat"
+        },
+        {
+          "text": "讲个冷笑话转移她的注意力。",
+          "effects": { "affection": 8 },
+          "lines": [
+            { "speaker": "player", "text": "你知道咖啡为什么总是很忙吗？……因为它一直在『冲』。" },
+            { "speaker": "wan", "expression": "normal", "text": "……" },
+            { "speaker": "wan", "expression": "smile", "text": "噗……哈哈哈，好冷！比外面的雨还冷！" },
+            { "speaker": "wan", "expression": "smile", "text": "……不过，谢谢你。真的不怕了。" }
+          ],
+          "next": "candle_chat"
+        }
+      ]
+    },
+
+    "candle_chat": {
+      "title": "烛光夜话（AI 自由聊天）",
+      "lines": [
+        { "text": "雷声渐渐远了，雨还在下。整条街都黑着，只有这根蜡烛还亮着。" },
+        { "speaker": "wan", "expression": "normal", "text": "看来一时半会儿来不了电了。" },
+        { "speaker": "wan", "expression": "smile", "text": "……反正你也走不了。陪我聊会儿天吧？想问什么都可以——心情好的话，说不定会回答你哦。" }
+      ],
+      "chat": {
+        "character": "wan",
+        "rounds": 5,
+        "maxAffection": 15,
+        "context": "整条街停电了，咖啡馆里只点着一根蜡烛，窗外还在下雨、偶尔打雷。林晚刚才被雷声吓到，抓住了玩家的袖子，现在两人坐在吧台边借着烛光聊天。",
+        "opening": "……说吧，想聊什么？",
+        "suggestions": ["你为什么怕打雷？", "这家店开了多久了？", "你推荐的咖啡很好喝", "你一个人不寂寞吗？"],
+        "next": "rain_stops"
+      }
+    },
+
+    "rain_stops": {
+      "title": "雨停了",
+      "lines": [
+        { "text": "不知过了多久，窗外的雨声停了。", "weather": null },
+        { "text": "灯『嗡』地一声亮了回来。", "scene": "cafe", "weather": null },
+        { "speaker": "wan", "expression": "smile", "text": "来电了！" },
+        { "speaker": "wan", "expression": "normal", "text": "雨也停了……" },
+        { "text": "她走到窗边看了看，又回过头来看我，像是下了什么决心。" },
+        { "speaker": "wan", "expression": "shy", "text": "那个……要不要上天台看看？下过雨的夜空，星星特别亮。" },
+        { "speaker": "wan", "expression": "pout", "text": "……就当是今晚陪我聊天的回礼。不去就算了。" }
+      ],
+      "choices": [
+        {
+          "text": "「好啊，带我去。」",
+          "effects": { "affection": 5 },
+          "lines": [
+            { "speaker": "wan", "expression": "smile", "text": "那就跟紧我，楼梯很窄的。" }
+          ],
+          "next": "rooftop"
+        },
+        {
+          "text": "「太晚了，我该回去了。」",
+          "effects": { "affection": -10, "flags": { "left_early": true } },
+          "lines": [
+            { "speaker": "wan", "expression": "sad", "text": "……" },
+            { "speaker": "wan", "expression": "normal", "text": "也是呢。明天还要上班吧。" },
+            { "speaker": "wan", "expression": "smile", "text": "嗯。路上小心。" }
+          ],
+          "next": "closing"
+        }
+      ]
+    },
+
+    "rooftop": {
+      "title": "天台",
+      "scene": "rooftop",
+      "lines": [
+        { "text": "推开天台的铁门，风里全是雨后泥土和青草的味道。", "hide": true },
+        { "text": "城市的灯火在脚下铺开，头顶是被雨洗得干干净净的夜空。" },
+        { "speaker": "wan", "expression": "smile", "text": "怎么样？这可是本店不对外开放的 VIP 座位。" },
+        { "text": "我们在天台边上并肩坐下。她的肩膀离我只有一拳的距离。", "cg": "cg_rooftop" },
+        { "speaker": "wan", "text": "……我跟你说过的吧，每位客人只招待一夜。" },
+        { "speaker": "wan", "text": "其实那个规矩，是我给自己定的。" },
+        { "speaker": "wan", "text": "几年前，有个人也坐在这里，跟我说『明晚再来』。" },
+        { "speaker": "wan", "text": "我等了好多个晚上。咖啡凉了又热，热了又凉。" },
+        { "speaker": "wan", "text": "他再也没来过。" },
+        { "text": "她说得很平静，可我看见她的手指攥紧了裙角。" },
+        { "speaker": "wan", "text": "所以我就想，干脆只招待一夜好了。不期待第二晚，就不会失望。" },
+        { "speaker": "wan", "expression": "shy", "cg": null, "text": "……奇怪，我怎么跟你说起这些了。" }
+      ],
+      "prompt": "她在等你说点什么。",
+      "choices": [
+        {
+          "text": "「那我破个例——明晚我还来。后天也来。」",
+          "effects": { "affection": 15, "flags": { "promise": true } },
+          "lines": [
+            { "speaker": "wan", "expression": "surprised", "text": "……" },
+            { "speaker": "wan", "expression": "shy", "text": "笨蛋。这种话……不要随便说啊。" },
+            { "speaker": "wan", "expression": "shy", "text": "我会当真的。" }
+          ],
+          "next": "route_check"
+        },
+        {
+          "text": "「规矩是你定的，也可以由你来改。」",
+          "effects": { "affection": 10 },
+          "lines": [
+            { "speaker": "wan", "expression": "normal", "text": "由我来改……吗。" },
+            { "speaker": "wan", "expression": "smile", "text": "你这个人，说话还真不客气。……但好像，有点道理。" }
+          ],
+          "next": "route_check"
+        },
+        {
+          "text": "什么都不说，把外套披在她肩上。",
+          "effects": { "affection": 12, "flags": { "jacket": true } },
+          "lines": [
+            { "text": "她怔了一下，没有回头，只是把外套往身上拢了拢。" },
+            { "speaker": "wan", "expression": "shy", "text": "……上面有咖啡的味道。" },
+            { "speaker": "wan", "expression": "smile", "text": "是我店里的味道。" }
+          ],
+          "next": "route_check"
+        }
+      ]
+    },
+
+    "route_check": {
+      "title": "（好感度分歧）",
+      "branch": [
+        { "if": { "affection": { "gte": 75 } }, "next": "loft" },
+        { "if": { "affection": { "gte": 40 } }, "next": "end_normal" },
+        { "next": "closing" }
+      ]
+    },
+
+    "loft": {
+      "title": "阁楼",
+      "lines": [
+        { "text": "风有点凉了。她站起来，拍了拍裙子上的灰。" },
+        { "speaker": "wan", "expression": "shy", "text": "……离天亮，还有好几个小时呢。" },
+        { "speaker": "wan", "expression": "shy", "text": "楼上……是我住的地方。要不要上来坐坐？" },
+        { "if": { "flag": "asked_wine" }, "speaker": "wan", "expression": "smile", "text": "你进门的时候不是问有没有酒吗？我藏了一瓶红酒，一直没人陪我喝。" },
+        { "if": { "notFlag": "asked_wine" }, "speaker": "wan", "expression": "smile", "text": "请你喝一杯不用加班的热可可。" },
+        { "scene": "loft", "hide": true, "text": "阁楼不大。斜斜的屋顶开着一扇天窗，月光正好落在床边。" },
+        { "text": "床头一盏小灯，书架上塞满了旧电影的碟片。整个房间都是她的味道。" },
+        { "speaker": "wan", "expression": "shy", "text": "有点乱……别、别到处看啦。" },
+        { "text": "她把杯子递过来的时候，我们的手指碰到了一起。这一次，谁都没有缩回去。" },
+        { "if": { "flag": "promise" }, "speaker": "wan", "expression": "shy", "text": "……你在天台上说的话，我当真了哦。" },
+        { "speaker": "wan", "expression": "shy", "text": "今晚，我好像打破了很多规矩。" },
+        { "speaker": "player", "text": "再多打破一个，也没关系吧。" },
+        { "text": "她抬起头看着我。月光把她的睫毛染成了银色。" },
+        { "text": "然后她踮起脚尖，吻了上来。" }
+      ],
+      "next": "night"
+    },
+
+    "night": {
+      "title": "一夜（付费 CG）",
+      "lines": [
+        { "text": "……", "hide": true },
+        { "cg": "cg_night", "text": "她伸手关掉了床头的灯。只剩天窗外的月光，安静地照着交叠在一起的影子。" },
+        { "text": "她的呼吸很轻，带着一点甜甜的味道。心跳声大得像窗外又下起了雨。" },
+        { "speaker": "wan", "text": "……别一直看着我。好难为情。" },
+        { "text": "我把她拥进怀里。窗外的城市还没有醒来，这个夜晚只属于我们两个人。" },
+        { "speaker": "wan", "text": "……这一次，不要只是一夜。" },
+        { "text": "……", "cg": null }
+      ],
+      "next": "end_good"
+    },
+
+    "end_good": {
+      "title": "结局·天亮之前",
+      "lines": [
+        { "text": "醒来的时候，天窗外已经泛白了。楼下传来磨豆机的声音。" },
+        { "scene": "cafe_dawn", "text": "我走下楼，看见她正蹲在门口，往那块小木牌上写着什么。" },
+        { "text": "「本店规矩：每位客人只招待一夜。」——这行字被一道粉笔线划掉了。" },
+        { "text": "下面多了一行歪歪扭扭的小字：「熟客除外。」" },
+        { "speaker": "wan", "expression": "smile", "text": "早安。昨晚的咖啡钱还没付哦。" },
+        { "speaker": "wan", "expression": "shy", "text": "……所以，今晚也要来。听到没有？" }
+      ],
+      "ending": "good"
+    },
+
+    "end_normal": {
+      "title": "结局·一杯咖啡的距离",
+      "lines": [
+        { "text": "我们在天台上一直坐到东边的天空发白。她没有再说起那个人，我也没有再问。" },
+        { "scene": "cafe_dawn", "text": "回到店里，她在一张小小的集点卡上盖了一个章，递给我。" },
+        { "speaker": "wan", "expression": "smile", "text": "集满十个章，送一杯招牌拿铁。" },
+        { "speaker": "player", "text": "可你不是说，每位客人只招待一夜吗？" },
+        { "speaker": "wan", "expression": "pout", "text": "……所以只盖了一个章啊，笨蛋。" },
+        { "speaker": "wan", "expression": "normal", "text": "要是哪天你又错过了末班车——" },
+        { "speaker": "wan", "expression": "smile", "text": "这家店，夜里都开着。" }
+      ],
+      "ending": "normal"
+    },
+
+    "closing": {
+      "title": "结局·打烊",
+      "lines": [
+        { "if": { "flag": "left_early" }, "text": "我拿起外套，推门出去。门铃在身后轻轻响了一声。", "sfx": "bell", "hide": true },
+        { "if": { "notFlag": "left_early" }, "text": "风越来越凉。她站起来，说该下去了。" },
+        { "if": { "notFlag": "left_early" }, "scene": "cafe", "weather": null, "speaker": "wan", "expression": "normal", "text": "谢谢光临。……祝你以后，都赶得上末班车。" },
+        { "if": { "notFlag": "left_early" }, "text": "门铃在身后轻轻响了一声。", "sfx": "bell", "hide": true },
+        { "scene": "alley", "weather": null, "text": "走出巷口的时候，我回头看了一眼。" },
+        { "text": "那扇窗的灯熄了。木牌被翻到了背面——「CLOSED」。" },
+        { "text": "后来，我又去找过那条小巷好几次。" },
+        { "text": "可不知道为什么，再也没有找到那家咖啡馆。" }
+      ],
+      "ending": "bad"
+    }
+  }
+}

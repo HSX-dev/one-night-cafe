@@ -1,0 +1,25 @@
+{
+  "name": "one-night-cafe",
+  "version": "1.0.0",
+  "description": "《一夜咖啡馆》H5 剧情互动 galgame demo —— JSON 驱动剧情 / 好感度 / 付费 CG / AI 自由聊天 / 埋点统计",
+  "private": true,
+  "type": "module",
+  "main": "server/index.js",
+  "engines": {
+    "node": ">=20.6"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch-path=server --watch-path=public/js/engine server/index.js",
+    "validate": "node scripts/validate-story.js",
+    "graph": "node scripts/story-graph.js",
+    "test": "node --test test/"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.8.0",
+    "cookie-parser": "^1.4.7",
+    "express": "^5.3.0",
+    "zod": "^4.6.7"
+  }
+}
