@@ -41,6 +41,7 @@ export function validateStory(story) {
   for (const [id, cg] of Object.entries(cgs)) {
     if (cg.paid) {
       if (!(cg.price > 0)) err(`cgs.${id}: 付费 CG 必须设置 price > 0`);
+      if (!cg.file) err(`cgs.${id}: 付费 CG 必须设置 file（相对 server/protected/ 的原图路径，不对外公开）`);
       if (!cg.preview) warn(`cgs.${id}: 付费 CG 建议设置 preview（未解锁时的模糊预览图）`);
     } else if (!cg.image) {
       err(`cgs.${id}: 免费 CG 必须设置 image`);

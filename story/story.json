@@ -81,6 +81,7 @@
       "paid": true,
       "price": 6,
       "currency": "CNY",
+      "file": "cg/cg_night.svg",
       "preview": "assets/cg/cg_night_preview.svg"
     }
   },
