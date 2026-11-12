@@ -123,6 +123,15 @@ test('AI 聊天：服务端维护会话、裁剪好感度、限制轮数', async
   assert.ok(Math.abs(end.body.totalDelta) <= 15);
 });
 
+test('AI 聊天刷新后继续：沿用已用轮数，伪造的累计好感被裁剪', async () => {
+  const frank = client();
+  const start = await frank('POST', '/api/chat/start', { node: 'candle_chat', affection: 80, resume: { used: 3, totalDelta: 999 } });
+  assert.equal(start.body.used, 3);
+  const r = await frank('POST', '/api/chat/message', { chatId: start.body.chatId, text: '谢谢你陪我聊天' });
+  assert.equal(r.body.roundsLeft, 1);
+  assert.ok(r.body.totalDelta <= 15);
+});
+
 test('埋点上报与统计：漏斗、选项比例、付费点击', async () => {
   const p = client();
   const t = Date.now() - 10 * 60 * 1000; // 10 分钟前，超出"进行中"窗口，算流失

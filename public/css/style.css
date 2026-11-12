@@ -200,7 +200,8 @@ button:disabled {
 }
 
 /* 不在游戏中时隐藏游戏 UI */
-.stage:not(.in-game) .in-game-only {
+.stage:not(.in-game) .in-game-only,
+.stage:not(.in-game) .debug {
   display: none !important;
 }
 
@@ -800,9 +801,9 @@ button:disabled {
 }
 
 .screen-title {
-  justify-content: space-between;
-  padding: calc(var(--safe-top) + 14cqh) 0 calc(var(--safe-bottom) + 4cqh);
-  background: linear-gradient(180deg, rgba(8, 6, 16, 0.65) 0%, rgba(8, 6, 16, 0) 32%, rgba(8, 6, 16, 0) 50%, rgba(8, 6, 16, 0.8) 100%);
+  justify-content: flex-start;
+  padding: calc(var(--safe-top) + 12cqh) 0 calc(var(--safe-bottom) + 3.5cqh);
+  background: linear-gradient(180deg, rgba(8, 6, 16, 0.65) 0%, rgba(8, 6, 16, 0) 30%, rgba(8, 6, 16, 0) 52%, rgba(8, 6, 16, 0.55) 68%, rgba(8, 6, 16, 0.9) 100%);
   animation: fadeIn 1.2s ease;
 }
 
@@ -832,15 +833,16 @@ button:disabled {
 .title-menu {
   display: flex;
   flex-direction: column;
-  gap: 2.4cqw;
+  gap: 2.2cqw;
   width: 58cqw;
+  margin: auto 0 4cqh; /* 推到画面下方，不挡住店面插画 */
 }
 
 .title-menu button {
-  padding: 0.8em;
+  padding: 0.72em;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.22);
-  background: rgba(18, 12, 28, 0.58);
+  background: rgba(18, 12, 28, 0.72);
   backdrop-filter: blur(6px);
   letter-spacing: 0.35em;
   font-size: 0.95em;
@@ -860,7 +862,8 @@ button:disabled {
 }
 
 .title-menu button:disabled {
-  opacity: 0.35;
+  color: var(--faint);
+  border-style: dashed;
 }
 
 .title-footer {
@@ -1427,7 +1430,9 @@ button:disabled {
 }
 
 .ending-list li b {
-  width: 7.5em;
+  flex: none;
+  width: 8.5em;
+  white-space: nowrap;
   font-size: 0.8em;
   letter-spacing: 0.1em;
 }
