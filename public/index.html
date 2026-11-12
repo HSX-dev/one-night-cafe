@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#120f1c" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="description" content="一夜咖啡馆 —— 雨夜、末班车和只营业一夜的咖啡馆。H5 恋爱剧情互动游戏 Demo。" />
+    <title>一夜咖啡馆</title>
+    <link rel="icon" href="assets/ui/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <main id="stage" class="stage" data-mode="normal">
+      <div class="stage-inner">
+        <!-- 场景层：背景 / 色调 / 天气 / 立绘 / CG / 闪光，全部双缓冲淡入淡出 -->
+        <div class="layer layer-bg"><img class="bg-a" alt="" /><img class="bg-b" alt="" /></div>
+        <div class="layer layer-tint" data-tint=""></div>
+        <canvas class="layer layer-weather"></canvas>
+        <div class="layer layer-char"><img class="char-a" alt="" /><img class="char-b" alt="" /></div>
+        <div class="layer layer-cg">
+          <img class="cg-a" alt="" /><img class="cg-b" alt="" />
+          <button class="cg-unlock" type="button" hidden>🔒 解锁这张 CG</button>
+        </div>
+        <div class="layer layer-flash"></div>
+
+        <!-- 顶部 HUD：好感度 -->
+        <header class="hud in-game-only">
+          <div class="affection" aria-label="好感度">
+            <span class="aff-heart" aria-hidden="true">♥</span>
+            <div class="aff-main">
+              <div class="aff-top"><span class="aff-label">好感度</span><span class="aff-value">0</span></div>
+              <div class="aff-bar"><div class="aff-fill"></div></div>
+            </div>
+            <div class="aff-toasts" aria-live="polite"></div>
+          </div>
+          <button class="hud-btn" type="button" data-action="title" aria-label="回到标题">☰</button>
+        </header>
+
+        <!-- 对话框 -->
+        <section class="dialogue hidden in-game-only" aria-live="polite">
+          <div class="nameplate"></div>
+          <p class="dialogue-text"></p>
+          <span class="next-indicator" aria-hidden="true">▼</span>
+          <nav class="quickmenu">
+            <button type="button" data-action="auto">自动</button>
+            <button type="button" data-action="skip">快进</button>
+            <button type="button" data-action="log">历史</button>
+            <button type="button" data-action="save">存档</button>
+            <button type="button" data-action="load">读档</button>
+            <button type="button" data-action="settings">设置</button>
+          </nav>
+        </section>
+
+        <!-- 选项 -->
+        <section class="choices hidden" role="group" aria-label="选项"></section>
+
+        <!-- AI 自由聊天 -->
+        <section class="chat hidden" aria-label="自由聊天">
+          <header class="chat-header">
+            <div>
+              <b class="chat-title">自由聊天</b>
+              <span class="chat-provider"></span>
+            </div>
+            <span class="chat-rounds"></span>
+          </header>
+          <div class="chat-list"></div>
+          <div class="chat-suggestions"></div>
+          <form class="chat-form" autocomplete="off">
+            <input class="chat-input" type="text" maxlength="200" placeholder="想对她说什么？" enterkeyhint="send" />
+            <button class="chat-send" type="submit">发送</button>
+          </form>
+          <button class="chat-end" type="button">结束聊天</button>
+        </section>
+
+        <!-- 加载 -->
+        <section class="screen screen-loading">
+          <div class="loading-cup" aria-hidden="true">☕</div>
+          <div class="loading-title">一夜咖啡馆</div>
+          <div class="loading-bar"><i></i></div>
+          <div class="loading-meta"><span class="loading-label">准备中…</span><span class="loading-pct">0%</span></div>
+          <div class="loading-enter">点击屏幕进入</div>
+          <p class="loading-tip">建议佩戴耳机 · 竖屏游玩</p>
+        </section>
+
+        <!-- 标题 -->
+        <section class="screen screen-title hidden">
+          <div class="title-logo">
+            <h1 class="title-name">一夜咖啡馆</h1>
+            <p class="title-sub"></p>
+          </div>
+          <nav class="title-menu">
+            <button type="button" data-title="new">开始游戏</button>
+            <button type="button" data-title="continue">继续游戏</button>
+            <button type="button" data-title="load">读取存档</button>
+            <button type="button" data-title="gallery">回想 · CG</button>
+            <button type="button" data-title="settings">设置</button>
+          </nav>
+          <footer class="title-footer">
+            <span class="title-progress"></span>
+            <a href="stats.html" target="_blank" rel="noopener">数据统计 ↗</a>
+          </footer>
+        </section>
+
+        <!-- 错误 -->
+        <section class="screen screen-error hidden">
+          <h2>出错了</h2>
+          <p class="error-message"></p>
+          <ul class="error-details"></ul>
+          <button type="button" onclick="location.reload()">刷新重试</button>
+        </section>
+
+        <div class="modal-root"></div>
+        <div class="toast-root" aria-live="polite"></div>
+      </div>
+    </main>
+    <noscript>请开启 JavaScript 后游玩。</noscript>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

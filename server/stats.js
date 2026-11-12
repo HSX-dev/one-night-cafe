@@ -201,5 +201,6 @@ function bfsOrder(story) {
     queue.push(...nextTargets(story.nodes[id]));
   }
   for (const id of Object.keys(story.nodes)) if (!seen.has(id)) order.push(id);
-  return order;
+  // 结局节点统一排在最后，漏斗从上到下读起来更顺
+  return [...order.filter((id) => !story.nodes[id].ending), ...order.filter((id) => story.nodes[id].ending)];
 }

@@ -29,12 +29,17 @@ export function chatRoutes({ stories, llm, config, track }) {
   }
 
   r.post('/chat/start', (req, res) => {
-    const { node: nodeId, affection } = req.body ?? {};
+    const { node: nodeId, affection, resume } = req.body ?? {};
     const story = stories.get();
     const chat = story.nodes[nodeId]?.chat;
     if (!chat) return res.status(400).json({ error: 'not_chat_node' });
     const characterId = chat.character ?? Object.keys(story.characters).find((k) => story.characters[k].persona);
     const aff = story.settings?.affection ?? {};
+    const maxAffection = chat.maxAffection ?? 15;
+    // 刷新页面后继续聊天：沿用已用轮数和累计好感（同样做上限裁剪）
+    const used = clamp(Math.floor(Number(resume?.used) || 0), 0, chat.rounds);
+    const totalDelta = clamp(Math.round(Number(resume?.totalDelta) || 0), -maxAffection, maxAffection);
+    const current = clamp(Number(affection) || 0, aff.min ?? 0, aff.max ?? 100);
     const session = {
       id: crypto.randomUUID(),
       uid: req.uid,
@@ -42,16 +47,17 @@ export function chatRoutes({ stories, llm, config, track }) {
       characterId,
       history: [],
       rounds: chat.rounds,
-      used: 0,
-      affectionStart: clamp(Number(affection) || 0, aff.min ?? 0, aff.max ?? 100),
-      totalDelta: 0,
-      maxAffection: chat.maxAffection ?? 15,
+      used,
+      affectionStart: current - totalDelta,
+      totalDelta,
+      maxAffection,
       updatedAt: Date.now(),
     };
     sessions.set(session.id, session);
     res.json({
       chatId: session.id,
       rounds: session.rounds,
+      used: session.used,
       opening: chat.opening ?? null,
       suggestions: chat.suggestions ?? [],
       provider: llm.name,

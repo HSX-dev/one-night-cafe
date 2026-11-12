@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>数据统计 · 一夜咖啡馆</title>
+    <link rel="icon" href="assets/ui/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/stats.css" />
+  </head>
+  <body>
+    <div class="viz-root">
+      <header class="top">
+        <div>
+          <h1>数据统计</h1>
+          <p class="sub">《一夜咖啡馆》埋点看板 · <span id="updated">加载中…</span></p>
+        </div>
+        <div class="top-actions">
+          <label class="auto"><input type="checkbox" id="auto" checked /> 每 10 秒刷新</label>
+          <button id="refresh" type="button">刷新</button>
+          <a href="./" class="link">← 返回游戏</a>
+        </div>
+      </header>
+
+      <p id="error" class="error" hidden></p>
+
+      <section class="tiles" id="tiles" aria-label="概览"></section>
+
+      <section class="card">
+        <header class="card-head">
+          <h2>节点漏斗：到达与流失</h2>
+          <p>到达 = 进入过该节点的局数（占总局数）；流失 = 停在该节点、未打出结局且超过 5 分钟没有动作的局</p>
+        </header>
+        <div class="table-wrap"><table class="funnel" id="funnel"></table></div>
+      </section>
+
+      <div class="grid-2">
+        <section class="card">
+          <header class="card-head">
+            <h2>选项选择比例</h2>
+            <p>同一局读档重选只计最后一次；括号内为该选项的好感度变化</p>
+          </header>
+          <div id="choices"></div>
+        </section>
+
+        <div class="stack">
+          <section class="card">
+            <header class="card-head">
+              <h2>付费 CG</h2>
+              <p>点击 = 点了"解锁"按钮的次数；支付成功以服务端订单为准</p>
+            </header>
+            <div id="pay"></div>
+          </section>
+          <section class="card">
+            <header class="card-head">
+              <h2>结局分布</h2>
+              <p>占已通关局数的比例</p>
+            </header>
+            <div id="endings"></div>
+          </section>
+          <section class="card">
+            <header class="card-head"><h2>AI 自由聊天</h2></header>
+            <div id="chat"></div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+    <script type="module" src="js/stats.js"></script>
+  </body>
+</html>
